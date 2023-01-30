@@ -28,33 +28,31 @@ robo.addEventListener('click', (evento) => { // o parâmetro 'evento' representa
 
 const controleAjuste = document.querySelectorAll('.controle-ajuste');
 
-function adicionarPeca(peca) {
-    const classePeca = `.contador-${peca}`;
-    const contador = document.querySelector(classePeca)
-    contador.value = Number(contador.value) + 1;
-}
-
-function subtrairPeca(peca) {
+function manipulaDados(peca, operacao) {
     const classePeca = `.contador-${peca}`;
     const contador = document.querySelector(classePeca)
 
-    if (Number(contador.value) > 0) {
-        contador.value = Number(contador.value) - 1;
+    if (operacao === 'somar') {
+        contador.value = Number(contador.value) + 1;
     } else {
-        alert('Não há mais peças do tipo para retirar.');
+        if (Number(contador.value) > 0) {
+            contador.value = Number(contador.value) - 1;
+        } else {
+            alert('Não há mais peças do tipo para retirar.');
+        }
     }
 }
 
 for (let i in controleAjuste) {
-    if (i % 2 == 0) {
+    if (i % 2 === 0) {
         const peca = controleAjuste[i].classList[1];
         controleAjuste[i].addEventListener('click', function () {
-            subtrairPeca(peca);
+            manipulaDados(peca, 'subtrair');
         });
     } else {
         const peca = controleAjuste[i].classList[1];
         controleAjuste[i].addEventListener('click', function () {
-            adicionarPeca(peca);
+            manipulaDados(peca, 'somar');
         });
     }
 }
