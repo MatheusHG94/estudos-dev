@@ -2,10 +2,10 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Manipulando o DOM - Aula 2</title>
+  <title>Manipulando o DOM - Aula 3</title>
   
-  <style>
-    * {
+<style>
+  * {
   margin: 0;
   padding: 0;
 }
@@ -13,38 +13,25 @@
 body {
   font-family: "Roboto Mono", monospace;
   min-height: 400px;
-  background-color: #000000;
+  min-width: 450px;
   background-size: 80vh;
-  color: rgb(29, 0, 82);
-  background-image: url("https://i.ytimg.com/vi/XIXYk6xIhZs/maxresdefault.jpg");
+  color: rgb(0, 0, 0);
+  background-image: url("https://www.uniabeu.edu.br/wp-content/uploads/2020/03/fundo-lilas.png");
   background-size: cover;
   background-repeat: no-repeat;
-}
-
-.container {
-  text-align: center;
-  padding: 10px;
   height: 100vh;
+  font-size: 24px;
+  font-weight: bold;
   display: flex;
   align-items: center;
   flex-direction: column;
-  text-align: center;
-}
-
-.alura-logo {
-  width: 40px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
 }
 
 button {
-  margin-left: 10px;
   font-size: 24px;
   font-family: "Futura Lt BT", sans-serif;
   background-color: black;
   background-repeat: no-repeat;
-  text-transform: uppercase;
   cursor: pointer;
   overflow: hidden;
   outline: none;
@@ -55,8 +42,7 @@ button {
   border: none;
   transition: 500ms;
   opacity: 0.8;
-  margin-top: 30px;
-  margin-left: 30px;
+  margin: 30px 0;
 }
 
 button:hover {
@@ -69,34 +55,80 @@ button:active {
   background-color: white;
 }
 
-.resultado {
-  margin-bottom: 30px;
+.lista {
+  padding: 20px;
+  list-style-type: none;
+  border: 4mm ridge rgba(234, 122, 11, 0.992);
 }
-  </style>
+
+.alura-logo {
+  width: 150px;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+}
+
+[cor="laranja"] {
+  color: orange;
+}
+
+[cor="vermelho"] {
+  color: red;
+}
+
+[cor="branco"] {
+  color: white;
+}
+
+[cor="amarelo"] {
+  color: yellow;
+}
+
+[cor="rosa"] {
+  color: pink;
+}
+
+[cor="preto"] {
+  color: black;
+}
+</style>
 
 </head>
 <body>
-  <div class="container">
 
-    <h1 class="page-title">
-      Manipulando elementos no DOM</h1>
+  <button onclick="mostraTintas(this)" mostrar>Aluratintas em estoque:</button>
 
-      <button id="calcular">Enviar notas</button>
+  <ul class="lista">
+    <li cor="laranja" tipo="tinta-exterior" class="item">Tinta laranja</li>
+    <li cor="vermelho" tipo="tinta-interior" class="item">Tinta vermelha</li>
+    <li cor="branco" tipo="tinta-interior" class="item">Tinta branca</li>
+    <li cor="amarelo" tipo="tinta-exterior" class="item">Tinta amarela</li>
+    <li cor="rosa" tipo="tinta-exterior" class="item">Tinta rosa</li>
+    <li cor="preto" tipo="tinta-exterior" class="item">Tinta preta</li>
+  </ul>
 
-      <h1 class="resultado"></h1>
-
-      <h2 class="resultado"></h2>
-
-  </div>
+  <button esconder>Reiniciar</button>
 
   <a href="https://alura.com.br/" target="_blank"><img src="https://www.alura.com.br/assets/img/home/alura-logo.svg" alt="" class="alura-logo"></a>
 
   <script>
-    const botao = document.querySelector('#calcular');
-    botao.addEventListener('click', () => {
-      const res = document.querySelector('.resultado');
-      res.innerHTML = 'Fui clicado';
-    })
+    const botaoMostrar = document.querySelector('[mostrar]');
+    const botaoEsconder = document.querySelector('[esconder]');
+
+    botaoMostrar.addEventListener('click', () => {
+      const tinta = document.querySelectorAll('[cor]');
+      tinta.forEach( (elemento) => {
+        elemento.style.display = "block";
+      });
+    });
+
+    botaoEsconder.addEventListener('click', () => {
+      const tinta = document.querySelectorAll('[cor]');
+      tinta.forEach( (elemento) => {
+        elemento.style.display = "none";
+      });
+    });
+
   </script>
 
 </body>
