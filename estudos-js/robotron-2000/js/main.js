@@ -113,3 +113,11 @@ function atualizaEstatisticas (peca, operador) {
     }
 }
 
+/* -------------------- Modificando cor do Robotron -------------------- */
+
+const botoes = document.querySelectorAll('[data-botao]');
+
+botoes.forEach( (elemento) => {
+
+});
+

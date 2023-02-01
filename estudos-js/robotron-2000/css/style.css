@@ -58,6 +58,41 @@ main {
     color: rgba(255,255,255,0.8)
 }
 
+.robotron-colors {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.botao {
+    border: 1px solid gray;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+[data-azul] {
+    background-color: lightblue;
+}
+
+[data-vermelho] {
+    background-color: lightcoral;
+}
+
+[data-amarelo] {
+    background-color: lightyellow;
+}
+
+[data-rosa] {
+    background-color: lightpink;
+}
+
+[data-preto] {
+    background-color: lightslategray;
+}
+
+[data-branco] {
+    background-color: snow;
+}
+
 .box {
     background: rgba(0,0,0,0.6);
     clip-path: polygon(calc(100% - 30px) 0, 100% 30px, 100% calc(100% - 30px), calc(100% - 30px) 100%, 30px 100%, 0 calc(100% - 30px), 0 30px, 30px 0);
