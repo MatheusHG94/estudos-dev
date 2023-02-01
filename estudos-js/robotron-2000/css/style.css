@@ -67,29 +67,37 @@ main {
     border: 1px solid gray;
     height: 50px;
     margin-bottom: 20px;
+    font-family: 'Teko', sans-serif;
+    font-size: 1.4em;
 }
 
-[data-azul] {
+.botao:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+[data-cor="Azul"] {
     background-color: lightblue;
 }
 
-[data-vermelho] {
+[data-cor="Vermelho"] {
     background-color: lightcoral;
 }
 
-[data-amarelo] {
+[data-cor="Amarelo"] {
     background-color: lightyellow;
 }
 
-[data-rosa] {
+[data-cor="Rosa"] {
     background-color: lightpink;
 }
 
-[data-preto] {
+[data-cor="Preto"] {
     background-color: lightslategray;
 }
 
-[data-branco] {
+[data-cor="Branco"] {
     background-color: snow;
 }
 

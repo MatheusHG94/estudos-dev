@@ -118,6 +118,29 @@ function atualizaEstatisticas (peca, operador) {
 const botoes = document.querySelectorAll('[data-botao]');
 
 botoes.forEach( (elemento) => {
-
+    elemento.addEventListener('click', () => {
+        const cor = elemento.attributes[2].textContent;
+        /*switch (cor) {
+            case 'Azul':
+                robo.src = "img/Robotron 2000 - Azul.png";
+                break
+            case 'Vermelho':
+                robo.src = "img/Robotron 2000 - Vermelho.png";
+                break
+            case 'Amarelo':
+                robo.src = "img/Robotron 2000 - Amarelo.png";
+                break
+            case 'Rosa':
+                robo.src = "img/Robotron 2000 - Rosa.png";
+                break
+            case 'Preto':
+                robo.src = "img/Robotron 2000 - Preto.png";
+                break
+            case 'Branco':
+                robo.src = "img/Robotron 2000 - Branco.png";
+                break
+        }*/
+        robo.src = `img/Robotron 2000 - ${cor}.png`;
+    });
 });
 
