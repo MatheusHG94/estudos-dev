@@ -2,9 +2,18 @@ function verificaValorDoChute(chute) {
     const numero = +chute; //converte para number
 
     if(seChuteInvalido(numero)) {
-        elementoChute.innerHTML += '<div>Valor inválido: não é um número.</div>';
-        
-        return;
+        if(chute == 'game over') {
+            document.body.innerHTML = `
+                <h2>Game Over</h2>
+
+                <button id="jogar-novamente" class="btn-jogar">Jogar novamente</button>
+            `;
+            document.body.style.backgroundColor = '#FF9494';
+        } else {
+            elementoChute.innerHTML += '<div>Valor inválido: não é um número.</div>';
+            
+            return;
+        }
     }
 
     if (seForaDosLimitesPermitidos(numero)) {
