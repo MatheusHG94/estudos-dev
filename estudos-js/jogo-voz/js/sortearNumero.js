@@ -1,10 +1,10 @@
 const elementoMenorValor = document.querySelector('#menor-valor');
 const elementoMaiorValor = document.querySelector('#maior-valor');
-const elementoBox = document.querySelector('.box');
 
 const menorValor = 1;
-const maiorValor = 100;
+const maiorValor = 1000;
 const numeroSecreto = gerarNumeroAleatorio();
+console.log(numeroSecreto);
 
 elementoMenorValor.innerHTML = menorValor;
 elementoMaiorValor.innerHTML = maiorValor;
