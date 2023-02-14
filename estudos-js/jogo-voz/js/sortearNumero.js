@@ -12,5 +12,3 @@ elementoMaiorValor.innerHTML = maiorValor;
 function gerarNumeroAleatorio() {
     return parseInt(Math.random() * maiorValor + 1); // é preciso do return para retornar o valor à const
 }
-
-elementoBox.innerHTML = numeroSecreto;
