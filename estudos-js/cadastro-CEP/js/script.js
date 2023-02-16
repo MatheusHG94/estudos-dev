@@ -28,7 +28,16 @@ console.log(consulta);
     FINALLY ocorre ao final do processo.
 */
 
+const inputCEP = document.querySelector('#cep');
+
+inputCEP.addEventListener('focusout', () => {
+    const cep = inputCEP.value;
+    const endereco = buscaEndereco(cep);
+})
+
 async function buscaEndereco(cep) {
+    const mensagemErro = document.querySelector('#erro');
+    mensagemErro.innerHTML = '';
     try {
         var consultaCEP = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
         var consultaCEPConvertida = await consultaCEP.json();
@@ -36,15 +45,29 @@ async function buscaEndereco(cep) {
             throw Error('Esse CEP não existe!');
         }
         console.log(consultaCEPConvertida);
+        preencheEndereco(consultaCEPConvertida);
         return consultaCEPConvertida;
     } catch (erro) {
         console.log(erro);
+        mensagemErro.innerHTML = '<p>CEP inválido. Tente novamente!</p>';
     }
 }
 
-let ceps = ['01001000','83601720'];
+function preencheEndereco(endereco) {
+    const inputEndereco = document.querySelector('#endereco');
+    const inputBairro = document.querySelector('#bairro');
+    const inputCidade = document.querySelector('#cidade');
+    const inputUF = document.querySelector('#estado');
+
+    inputEndereco.value = endereco.logradouro;
+    inputBairro.value = endereco.bairro;
+    inputCidade.value = endereco.localidade;
+    inputUF.value = endereco.uf;
+}
+
+/*let ceps = ['01001000','83601720'];
 let conjuntoCeps = ceps.map(valores => buscaEndereco(valores));
-Promise.all(conjuntoCeps).then(respostas => console.log(respostas));
+Promise.all(conjuntoCeps).then(respostas => console.log(respostas));*/
 
 /*
     utilizando ASYNC / AWAIT também é possível criar uma função assíncrona;
