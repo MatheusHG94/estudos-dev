@@ -1,18 +1,28 @@
-/*
-var consulta = fetch('https://viacep.com.br/ws/83601724/json/')
-.then(resposta => resposta.json())
-.then(r => {
-    if (r.erro) {
-        throw Error('Esse CEP não existe!')
-    } else {
-        console.log(r)
-    }
-})
-.catch(erro => console.log(erro))
-.finally(mensagem => console.log('Processamento concluído!'));
+const inputCEP = document.querySelector('#cep');
 
-console.log(consulta);
-*/
+inputCEP.addEventListener('focusout', () => {
+    const cep = inputCEP.value;
+    const url = `https://viacep.com.br/ws/${cep}/json/`;
+    consulta(url);
+})
+
+
+// .THEN ----------------------------------------
+
+var consulta = (url) => {
+    fetch(url)
+    .then(resposta => resposta.json())
+    .then(data => {
+        if (data.erro) {
+            throw Error('Esse CEP não existe!');
+        } else {
+            console.log(data);
+            preencheEndereco(data);
+        }
+    })
+    .catch(erro => console.log(erro))
+    .finally(mensagem => console.log('Processamento concluído!'));
+};
 
 /*
     FETCH faz a requisição que, quando chamada, iniciará uma promise e rodará em segundo plano até ser concluída;
@@ -28,18 +38,14 @@ console.log(consulta);
     FINALLY ocorre ao final do processo.
 */
 
-const inputCEP = document.querySelector('#cep');
 
-inputCEP.addEventListener('focusout', () => {
-    const cep = inputCEP.value;
-    const endereco = buscaEndereco(cep);
-})
+// ASYNC / AWAIT ----------------------------------------
 
-async function buscaEndereco(cep) {
+/*async function buscaEndereco(url) {
     const mensagemErro = document.querySelector('#erro');
     mensagemErro.innerHTML = '';
     try {
-        var consultaCEP = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        var consultaCEP = await fetch(url);
         var consultaCEPConvertida = await consultaCEP.json();
         if (consultaCEPConvertida.erro) {
             throw Error('Esse CEP não existe!');
@@ -51,19 +57,7 @@ async function buscaEndereco(cep) {
         console.log(erro);
         mensagemErro.innerHTML = '<p>CEP inválido. Tente novamente!</p>';
     }
-}
-
-function preencheEndereco(endereco) {
-    const inputEndereco = document.querySelector('#endereco');
-    const inputBairro = document.querySelector('#bairro');
-    const inputCidade = document.querySelector('#cidade');
-    const inputUF = document.querySelector('#estado');
-
-    inputEndereco.value = endereco.logradouro;
-    inputBairro.value = endereco.bairro;
-    inputCidade.value = endereco.localidade;
-    inputUF.value = endereco.uf;
-}
+}*/
 
 /*let ceps = ['01001000','83601720'];
 let conjuntoCeps = ceps.map(valores => buscaEndereco(valores));
@@ -78,3 +72,18 @@ Promise.all(conjuntoCeps).then(respostas => console.log(respostas));*/
 
     PROMISE.ALL serve para quando houverem várias requisições feitas ao mesmo tempo
 */
+
+// ----------------------------------------
+
+function preencheEndereco(endereco) {
+    const inputEndereco = document.querySelector('#endereco');
+    const inputBairro = document.querySelector('#bairro');
+    const inputCidade = document.querySelector('#cidade');
+    const inputUF = document.querySelector('#estado');
+
+    inputEndereco.value = endereco.logradouro;
+    inputBairro.value = endereco.bairro;
+    inputCidade.value = endereco.localidade;
+    inputUF.value = endereco.uf;
+}
+
