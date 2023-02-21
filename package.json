@@ -1,0 +1,22 @@
+{
+  "name": "estudos-dev",
+  "version": "1.0.0",
+  "description": "Estudos de desenvolvimento",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatheusHG94/estudos-dev.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatheusHG94/estudos-dev/issues"
+  },
+  "homepage": "https://github.com/MatheusHG94/estudos-dev#readme",
+  "dependencies": {
+    "json-server": "^0.17.1"
+  }
+}
