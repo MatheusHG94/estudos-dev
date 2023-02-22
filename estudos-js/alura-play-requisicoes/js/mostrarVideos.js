@@ -2,17 +2,17 @@ import { conectaAPI } from "./conectaAPI.js"; // importando a variável que expo
 
 const lista = document.querySelector('[data-lista]');
 
-function constroiCard(url, titutlo, imagem, descricao) {
+function constroiCard(url, titulo, imagem, descricao) {
     const video = document.createElement('li');
     video.className = 'videos__item';
     video.innerHTML = `
         <iframe width="100%" height="72%" src="${url}"
-            title="${titutlo}" frameborder="0"
+            title="${titulo}" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
         <div class="descricao-video">
             <img src="${imagem}" alt="logo canal alura">
-            <h3>${titutlo}</h3>
+            <h3>${titulo}</h3>
             <p>${descricao}</p>
         </div>
     `;
@@ -22,7 +22,7 @@ function constroiCard(url, titutlo, imagem, descricao) {
 
 async function listaVideos() {
     const listaApi = await conectaAPI.listaVideos();
-    listaApi.forEach(element => lista.appendChild(constroiCard(element.url, element.titutlo, element.imagem, element.descricao)));
+    listaApi.forEach(element => lista.appendChild(constroiCard(element.url, element.titulo, element.imagem, element.descricao)));
 }
 
 listaVideos();
