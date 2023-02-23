@@ -83,6 +83,13 @@
       "url": "https://www.youtube.com/embed/IGFSiBJIXFQ",
       "imagem": "https://purr.objects-us-east-1.dream.io/i/OoNx6.jpg",
       "id": 12
+    },
+    {
+      "titulo": "Por que o JavaScript é assim? | Memes do JavaScript #01",
+      "descricao": "9 mil visualizações",
+      "url": "https://www.youtube.com/embed/VHxoyduIt18",
+      "imagem": "https://github.com/MonicaHillman/aluraplay-requisicoes/blob/main/img/logo.png?raw=true",
+      "id": 13
     }
   ]
 }
