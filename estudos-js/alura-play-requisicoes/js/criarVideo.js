@@ -10,9 +10,13 @@ async function criarVideo(evento) {
     const imagem = document.querySelector('[data-imagem]').value;
     const descricao = Math.floor(Math.random() * 10).toString(); // a função Math.random() cria um número pseudoaleatório entre 0 e 1; a função Math.floor() vai arredondar o valor passado para o menor inteiro
 
-    await conectaAPI.criaVideo(titulo, descricao, url, imagem);
+    try {
+        await conectaAPI.criaVideo(titulo, descricao, url, imagem);
 
-    window.location.href = "../pages/envio-concluido.html";
+        window.location.href = "../pages/envio-concluido.html";
+    } catch (e) {
+        alert(e);
+    }
 }
 
 formulario.addEventListener('submit', evento => criarVideo(evento));
