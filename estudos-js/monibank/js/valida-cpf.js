@@ -2,7 +2,7 @@ export default function validaCPF(campo) {
     const cpf = campo.value.replace(/\.|-/g, ""); // esse replace substitui o . e o - por ""
     
     if (validaNumerosRepetidos(cpf) || validaPrimeiroDigito(cpf) || validaSegundoDigito(cpf)) {
-        campo.setCustomValidity('Esse CPF não é válido');
+        campo.setCustomValidity('Esse CPF não é válido'); // a função do setCustomValidity é informar à API de erros do JS que o erro customError terá valor true; a mensagem passada como parâmetro aqui não será imprimida na tela
     }
 }
 

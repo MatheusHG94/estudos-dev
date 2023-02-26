@@ -2,6 +2,24 @@ import validaCPF from "./valida-cpf.js";
 import validaMaiorIdade from "./valida-idade.js";
 
 const camposDoFormulario = document.querySelectorAll("[required]");
+const formulario = document.querySelector("[data-formulario]");
+
+formulario.addEventListener("submit", e => {
+    e.preventDefault();
+
+    const listaRespostas = {
+        "nome": e.target.elements["nome"].value,
+        "email": e.target.elements["email"].value,
+        "rg": e.target.elements["rg"].value,
+        "cpf": e.target.elements["cpf"].value,
+        "data de nascimento": e.target.elements["aniversario"].value,
+        "imagem": ""
+    };
+
+    localStorage.setItem("cadastro", JSON.stringify(listaRespostas));
+
+    window.location.href = './abrir-conta-form-2.html';
+})
 
 camposDoFormulario.forEach((campo) => {
     campo.addEventListener("blur", () => verificaCampo(campo)); // blur é o evento que ocorre quando se tira o foco do campo, ou seja, quando clica fora
@@ -49,7 +67,7 @@ const mensagens = {
 
 function verificaCampo(campo) {
     let mensagemDeErro = "";
-    campo.setCustomValidity('');
+    campo.setCustomValidity(''); // passar um valor vazio para a setCustomValidity informa à API de erros do JS que o customError está com valor false
     
     if (campo.name == "cpf" && campo.value.length >= 11) {
         validaCPF(campo);
@@ -58,7 +76,7 @@ function verificaCampo(campo) {
         validaMaiorIdade(campo);
     }
 
-    //console.log(campo.validity); // mostra o status dos erros de validade dos campos de formulário
+    //console.log(campo.validity); // mostra o status dos erros de validade de campos de formulário que são padrão do JS
 
     tiposDeErro.forEach(erro => {
         if (campo.validity[erro]) {
@@ -68,7 +86,7 @@ function verificaCampo(campo) {
     })
 
     const elementoMensagemErro = campo.parentNode.querySelector('.mensagem-erro');
-    const validadorDeInput = campo.checkValidity();
+    const validadorDeInput = campo.checkValidity(); // verifica se o preenchimento do campo está válido; retorna true se estiver tudo ok
 
     if (!validadorDeInput) {
         elementoMensagemErro.textContent = mensagemDeErro;
