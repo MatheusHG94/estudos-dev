@@ -48,11 +48,31 @@ const mensagens = {
 }
 
 function verificaCampo(campo) {
+    let mensagemDeErro = "";
+    campo.setCustomValidity('');
+    
     if (campo.name == "cpf" && campo.value.length >= 11) {
         validaCPF(campo);
     }
     if (campo.name == "aniversario" && campo.value != "") {
         validaMaiorIdade(campo);
     }
-    console.log(campo.validity); // mostra o status dos erros de validade dos campos de formulário
+
+    //console.log(campo.validity); // mostra o status dos erros de validade dos campos de formulário
+
+    tiposDeErro.forEach(erro => {
+        if (campo.validity[erro]) {
+            mensagemDeErro = mensagens[campo.name][erro];
+            console.log(mensagemDeErro);
+        }
+    })
+
+    const elementoMensagemErro = campo.parentNode.querySelector('.mensagem-erro');
+    const validadorDeInput = campo.checkValidity();
+
+    if (!validadorDeInput) {
+        elementoMensagemErro.textContent = mensagemDeErro;
+    } else {
+        elementoMensagemErro.textContent = "";
+    }
 }
